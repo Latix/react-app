@@ -6,12 +6,15 @@ import reportWebVitals from './reportWebVitals';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import ProductsPage from "./routes/Products";
 import BaseLayout from "./routes/BaseLayout";
+import SingleProduct from "./routes/SingleProduct";
 
 const router = createBrowserRouter([
   { path: '/', element: <BaseLayout />, 
     children: [
       { path: '/', element: <App /> },
-      { path: '/products', element: <ProductsPage /> }
+      { path: '/products', element: <ProductsPage />, children: [
+        { path: '/:id', element: <SingleProduct /> }
+      ] }
     ]
   },
 ]);
