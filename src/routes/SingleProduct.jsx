@@ -1,5 +1,5 @@
 import { useParams } from 'react-router-dom';
-import { useEffect } from "react";
+// import { useEffect } from "react";
 
 const SingleProduct = () => {
     const param = useParams();

@@ -8,13 +8,19 @@ import ProductsPage from "./routes/Products";
 import BaseLayout from "./routes/BaseLayout";
 import SingleProduct from "./routes/SingleProduct";
 import NotFound from "./routes/NotFound";
+import HooksLayout from "./routes/HooksLayout";
+import store from './redux/store';
+import { Provider } from 'react-redux';
+import CounterLayout from "./routes/CounterLayout";
 
 const router = createBrowserRouter([
   { path: '/', element: <BaseLayout />, 
     children: [
       { path: '/', element: <App /> },
       { path: '/products', element: <ProductsPage /> },
-      { path: '/products/:id', element: <SingleProduct /> }
+      { path: '/products/:id', element: <SingleProduct /> },
+      { path: '/hooks', element: <HooksLayout /> },
+      { path: '/counter', element: <CounterLayout /> }
     ]
   },
   { path: "*", element: <NotFound /> }
@@ -23,7 +29,9 @@ const router = createBrowserRouter([
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <Provider store={store}>
+      <RouterProvider router={router} />
+    </Provider>
   </React.StrictMode>
 );
 
