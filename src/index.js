@@ -1,17 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
-import { RouterProvider, createBrowserRouter } from 'react-router-dom';
-import ProductsPage from "./routes/Products";
-import BaseLayout from "./routes/BaseLayout";
-import SingleProduct from "./routes/SingleProduct";
-import NotFound from "./routes/NotFound";
-import HooksLayout from "./routes/HooksLayout";
-import store from './redux/store';
 import { Provider } from 'react-redux';
+import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+import App from './App';
+import { AppContextProvider } from './AppContextProvider';
+import './index.css';
+import store from './redux/store';
+import reportWebVitals from './reportWebVitals';
+import BaseLayout from "./routes/BaseLayout";
 import CounterLayout from "./routes/CounterLayout";
+import HooksLayout from "./routes/HooksLayout";
+import NotFound from "./routes/NotFound";
+import ProductsPage from "./routes/Products";
+import SingleProduct from "./routes/SingleProduct";
 
 const router = createBrowserRouter([
   { path: '/', element: <BaseLayout />, 
@@ -27,11 +28,14 @@ const router = createBrowserRouter([
 ]);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
+
 root.render(
   <React.StrictMode>
-    <Provider store={store}>
-      <RouterProvider router={router} />
-    </Provider>
+    <AppContextProvider>
+      <Provider store={store}>
+        <RouterProvider router={router} />
+      </Provider>
+    </AppContextProvider>
   </React.StrictMode>
 );
 
